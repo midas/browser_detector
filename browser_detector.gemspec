@@ -51,11 +51,11 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 2.10.2"])
+      s.add_development_dependency(%q<shoulda>, [">= 2.10.2"])
     else
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 2.10.2"])
+      s.add_dependency(%q<shoulda>, [">= 2.10.2"])
     end
   else
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 2.10.2"])
+    s.add_dependency(%q<shoulda>, [">= 2.10.2"])
   end
 end
