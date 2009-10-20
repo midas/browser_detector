@@ -31,7 +31,7 @@ g_browser_full_name() and g_browser_is?().
 
 Add to environment file:
 
-  config.gem "browser_detecotr", :version => '1.0.0', :source => 'http://gemcutter.org'
+  config.gem "browser_detector", :version => '1.0.0', :source => 'http://gemcutter.org'
 
 
 == USAGE
