@@ -8,7 +8,7 @@ module BrowserDetector
     attr_reader :ua
     
     def initialize( user_agent )
-      @ua = user_agent.downcase
+      @ua = user_agent.downcase unless user_agent.nil?
       @version_regex = /(\d*)\.(\d*)\.*(\d*)\.*(\d*)/
     end
     
@@ -76,12 +76,8 @@ module BrowserDetector
               'safari'
             elsif ua.include?( 'chrome' )
               'chrome'
-            #elsif ua.include?( 'mozilla/' )
-            #  'firefox'
             elsif ua.include?( 'firefox' )
               'firefox'
-            #elsif ua.include?( 'gecko/' ) 
-            #  'firefox'
             elsif ua.include?( 'netscape' )
               'netscape'
             else

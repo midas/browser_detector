@@ -33,6 +33,17 @@ class DetectorTest < Test::Unit::TestCase
       @user_agents.each { |key, value| assert_equal value, BrowserDetector::Detector.user_agents[key] }
     end
     
+    context "when given anil user agent" do
+      setup do
+        @detector = BrowserDetector::Detector.new( nil )
+        assert @detector.ua.nil?
+      end
+      
+      should "agree that the browser name is 'unknown" do
+        assert_equal 'unknown', @detector.browser_name
+      end
+    end
+    
     context "when given Firefox 2.0 user agent" do
       setup do
         @detector = BrowserDetector::Detector.new( @user_agents[:firefox2] )
@@ -1381,6 +1392,33 @@ class DetectorTest < Test::Unit::TestCase
       
       should "agree that the browser is :name => 'firefox', :major_version => '4', :minor_version => '0', :build_version => '3', :revision_version => '0'" do
          assert @detector.browser_is?( :name => 'safari', :major_version => '4', :minor_version => '0', :build_version => '3', :revision_version => '0' )
+      end
+    end
+  
+    context "when given a bad Safari 4.0.3 user agent where version cannot be determined" do
+      setup do
+        @detector = BrowserDetector::Detector.new( 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/999.2' )
+        assert !@detector.ua.nil?
+      end
+      
+      should "agree that the browser verison is 0.0.0.0" do
+        assert_equal '0.0.0.0', @detector.browser_version
+      end
+      
+      should "agree that the browser verison major is 0" do
+        assert_equal '0', @detector.browser_version_major
+      end
+      
+      should "agree that the browser verison minor is 0" do
+        assert_equal '0', @detector.browser_version_minor
+      end
+      
+      should "agree that the browser verison build is 0" do
+        assert_equal '0', @detector.browser_version_build
+      end
+      
+      should "agree that the browser verison revision is 0" do
+        assert_equal '0', @detector.browser_version_revision
       end
     end
   end
