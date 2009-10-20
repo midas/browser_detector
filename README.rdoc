@@ -40,7 +40,7 @@ The following examples will assume Firefox 3.5.3 on OS/X is being used.  The use
 
   Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3
 
-=== DETECTOR CLASS
+=== Detector Class
 
   @detector = BrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
   puts @detector.browser_name # firefox
@@ -49,7 +49,7 @@ The following examples will assume Firefox 3.5.3 on OS/X is being used.  The use
   puts @detector.browser_is? :name => :firefox, :version => '3.5.3' # true
   puts @detector.browser_is? :name => :firefox, :major_version => 3, :minor_version => '5', build_version => '3' # true
 
-=== WITHIN RAILS VIEWS
+=== Within Rails Views
 
 g_browser_name
 
