@@ -5,13 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "browser_detector"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Determines the name and version of the browser currently making a request.}
+    gem.description = %Q{Determines the name and version of the browser currently making a request.}
     gem.email = "jason@lookforwardenterprises.com"
     gem.homepage = "http://github.com/midas/browser_detector"
-    gem.authors = ["Jason Harrelson"]
-    gem.add_development_dependency "thoughtbot-shoulda"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.authors = ["C. Jason Harrelson (midas)"]
+    gem.add_development_dependency "thoughtbot-shoulda", ">= 2.10.2"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
