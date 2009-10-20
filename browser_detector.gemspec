@@ -19,11 +19,18 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "History.txt",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "browser_detector.gemspec",
      "lib/browser_detector.rb",
+     "lib/browser_detector/detector.rb",
+     "lib/browser_detector/rails.rb",
+     "lib/browser_detector/rails/view_helpers.rb",
+     "test/browser_detector/detector_test.rb",
+     "test/browser_detector/rails/view_helpers_test.rb",
      "test/browser_detector_test.rb",
      "test/test_helper.rb"
   ]

@@ -1,3 +1,4 @@
 = 1.0.0 2009-10-19
 
+* Initial release.
 * Moved browser detector out of the Guilded framework to its own Gem.
