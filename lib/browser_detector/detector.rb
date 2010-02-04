@@ -216,6 +216,10 @@ module BrowserDetector
       end
     end
     
+    def resolve_version_for_unknown
+      '0'
+    end
+    
     def browser_full_name_for_ie
       "Internet Explorer #{browser_version}"
     end
@@ -230,6 +234,10 @@ module BrowserDetector
     
     def browser_full_name_for_safari
       "Safari #{browser_version}"
+    end
+    
+    def browser_full_name_for_unknown
+      ""
     end
   end
 end
