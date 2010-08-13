@@ -20,6 +20,33 @@ module BrowserDetector
         @g_browser_detector.browser_version
       end
 
+      # Returns the major version of the browser that is making this request.  For example '7'.  When using 
+      # the browser detector in the contoller you may put a :g_browser_detector variabe in the session if 
+      # you wish to keep the BrowserDetector from being instantiated more than once per request.
+      #
+      def g_browser_version_major
+        setup_detector
+        @g_browser_detector.browser_version_major
+      end
+
+      # Returns the major version of the browser that is making this request.  For example '7'.  When using 
+      # the browser detector in the contoller you may put a :g_browser_detector variabe in the session if 
+      # you wish to keep the BrowserDetector from being instantiated more than once per request.
+      #
+      def g_browser_version_minor
+        setup_detector
+        @g_browser_detector.browser_version_minor
+      end
+
+      # Returns the major version of the browser that is making this request.  For example '7'.  When using 
+      # the browser detector in the contoller you may put a :g_browser_detector variabe in the session if 
+      # you wish to keep the BrowserDetector from being instantiated more than once per request.
+      #
+      def g_browser_version_build
+        setup_detector
+        @g_browser_detector.browser_version_build
+      end
+
       # Returns the full browser name.  For example, 'Internet Explorer 7.0'.
       #
       def g_browser_full_name

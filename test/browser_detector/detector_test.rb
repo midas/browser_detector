@@ -14,6 +14,7 @@ class DetectorTest < Test::Unit::TestCase
         :firefox35win => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
         :opera10 => 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.00',
         :safari403 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/532.2',
+        :safari501 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-us) AppleWebKit/533.17.8 (KHTML, like Gecko) Version/5.0.1 Safari/533.17.8',
         :iphone3 => 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7C144 Safari/528.16',
         :iphone2 => 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A535b Safari/419.3',
         :chrome3 => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.27 Safari/532.0',
@@ -1419,6 +1420,141 @@ class DetectorTest < Test::Unit::TestCase
       
       should "agree that the browser verison revision is 0" do
         assert_equal '0', @detector.browser_version_revision
+      end
+    end
+
+    context "when given Safari 5.0.1 user agent" do
+      setup do
+        @detector = BrowserDetector::Detector.new( @user_agents[:safari501] )
+        assert !@detector.ua.nil?
+      end
+      
+      should "agree that the browser name is 'safari'" do
+        assert_equal 'safari', @detector.browser_name
+      end
+      
+      should "agree that the browser version is '5.0.1'" do
+        assert_equal '5.0.1', @detector.browser_version
+      end
+     
+      should "agree that the browser major version is '5'" do
+        assert_equal @detector.browser_version_major, '5'
+      end
+      
+      should "agree that the browser minor version is '0'" do
+        assert_equal @detector.browser_version_minor, '0'
+      end
+      
+      should "agree that the browser build version is '1'" do
+        assert_equal @detector.browser_version_build, '1'
+      end
+      
+      should "agree that the browser revision version is '0'" do
+        assert_equal @detector.browser_version_revision, '0'
+      end
+      
+      should "have a browser id of 'safari501'" do
+        assert_equal @detector.browser_id, 'safari501'
+      end
+      
+      should "have a browser full name of 'Safari 5.0.1'" do
+        assert_equal @detector.browser_full_name, 'Safari 5.0.1'
+      end
+      
+      should "be able to use a png" do
+        assert @detector.can_use_png?
+      end
+      
+      should "agree that the browser is :name => 'safari'" do
+        assert @detector.browser_is?( :name => 'safari' )
+      end
+      
+      should "agree that the browser is :name => :safari" do
+        assert @detector.browser_is?( :name => :safari )
+      end
+      
+      should "agree that the browser is :version => '5.0.1'" do
+        assert @detector.browser_is?( :version => '5.0.1' )
+      end
+            
+      should "agree that the browser is :name => 'safari' and :version => '5.0.1'" do
+        assert @detector.browser_is?( :name => 'safari', :version => '5.0.1' )
+      end
+      
+      should "agree that the browser is :name => :safari and :version => '5.0.1'" do
+        assert @detector.browser_is?( :name => :safari, :version => '5.0.1' )
+      end
+      
+      should "agree that the browser is :major_version => '5'" do
+         assert @detector.browser_is?( :major_version => '5' )
+      end
+      
+      should "agree that the browser is :minor_version => '0'" do
+         assert @detector.browser_is?( :minor_version => '0' )
+      end
+      
+      should "agree that the browser is :build_version => '1'" do
+         assert @detector.browser_is?( :build_version => '1' )
+      end
+      
+      should "agree that the browser is :revision_version => '0'" do
+         assert @detector.browser_is?( :revision_version => '0' )
+      end
+      
+      should "agree that the browser is :major_version => 5" do
+         assert @detector.browser_is?( :major_version => 5 )
+      end
+      
+      should "agree that the browser is :minor_version => 0" do
+         assert @detector.browser_is?( :minor_version => 0 )
+      end
+      
+      should "agree that the browser is :build_version => 1" do
+         assert @detector.browser_is?( :build_version => 1 )
+      end
+      
+      should "agree that the browser is :revision_version => 0" do
+         assert @detector.browser_is?( :revision_version => 0 )
+      end
+      
+      should "agree that the browser is :major_version => '5', :minor_version => '0'" do
+         assert @detector.browser_is?( :major_version => '5', :minor_version => '0' )
+      end
+      
+      should "agree that the browser is :major_version => '5', :minor_version => '0', :build_version => '1'" do
+         assert @detector.browser_is?( :major_version => '5', :minor_version => '0', :build_version => '1' )
+      end
+      
+      should "agree that the browser is :major_version => '5', :minor_version => '0', :build_version => '1', :revision_version => '0'" do
+         assert @detector.browser_is?( :major_version => '5', :minor_version => '0', :build_version => '1', :revision_version => '0' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :major_version => '5'" do
+         assert @detector.browser_is?( :name => 'safari', :major_version => '5' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :minor_version => '0'" do
+         assert @detector.browser_is?( :name => 'safari', :minor_version => '0' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :build_version => '1'" do
+         assert @detector.browser_is?( :name => 'safari', :build_version => '1' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :revision_version => '0'" do
+         assert @detector.browser_is?( :name => 'safari', :revision_version => '0' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :major_version => '5', :minor_version => '0'" do
+         assert @detector.browser_is?( :name => 'safari', :major_version => '5', :minor_version => '0' )
+      end
+      
+      should "agree that the browser is :name => 'safari', :major_version => '5', :minor_version => '0', :build_version => '1'" do
+         assert @detector.browser_is?( :name => 'safari', :major_version => '5', :minor_version => '0', :build_version => '1' )
+      end
+      
+      should "agree that the browser is :name => 'firefox', :major_version => '5', :minor_version => '0', :build_version => '1', :revision_version => '0'" do
+         assert @detector.browser_is?( :name => 'safari', :major_version => '5', :minor_version => '0', :build_version => '1', :revision_version => '0' )
       end
     end
   end

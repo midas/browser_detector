@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{browser_detector}
-  s.version = "1.0.0"
+  s.version = "1.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["C. Jason Harrelson (midas)"]
+  s.authors = ["C. Jason Harrelson (midas)", "Kelley Reynolds"]
   s.date = %q{2009-10-19}
   s.description = %q{Determines the name and version of the browser currently making a request.}
   s.email = %q{jason@lookforwardenterprises.com}
