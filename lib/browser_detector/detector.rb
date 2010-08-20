@@ -72,10 +72,10 @@ module BrowserDetector
               'opera'
             elsif ua.include?( 'konqueror' ) 
               'konqueror'
+            elsif ua.include?( 'chrome' ) # Need to check for chrome first since it contains safaris
+             'chrome'
             elsif ua.include?( 'applewebkit/' )
               'safari'
-            elsif ua.include?( 'chrome' )
-              'chrome'
             elsif ua.include?( 'firefox' )
               'firefox'
             elsif ua.include?( 'netscape' )
