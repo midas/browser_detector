@@ -8,20 +8,21 @@ describe BrowserDetector::Detector do
 
   def self.user_agents
     {
-      :ie55 => 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)',
-      :ie60 => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
-      :ie70 => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
-      :ie80 => 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)',
-      :firefox2 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.17) Gecko/20080829 Firefox/2.0.0.17',
-      :firefox3 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.0.11) Gecko/2009060214 Firefox/3.0.11',
-      :firefox35 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3',
+      :ie55         => 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.1)',
+      :ie60         => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+      :ie70         => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+      :ie80         => 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0)',
+      :firefox2     => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.17) Gecko/20080829 Firefox/2.0.0.17',
+      :firefox3     => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.0.11) Gecko/2009060214 Firefox/3.0.11',
+      :firefox35    => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3',
       :firefox35win => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)',
-      :opera10 => 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.00',
-      :safari403 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/532.2',
-      :iphone3 => 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7C144 Safari/528.16',
-      :iphone2 => 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A535b Safari/419.3',
-      :chrome3 => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.27 Safari/532.0',
-      :chrome4 => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/532.2'
+      :opera10      => 'Opera/9.80 (Macintosh; Intel Mac OS X; U; en) Presto/2.2.15 Version/10.00',
+      :safari403    => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_6; en-us) AppleWebKit/528.16 (KHTML, like Gecko) Version/4.0 Safari/528.16',
+      :safari501    => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-us) AppleWebKit/533.17.8 (KHTML, like Gecko) Version/5.0.1 Safari/533.17.8',
+      :chrome3      => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML, like Gecko) Chrome/3.0.195.27 Safari/532.0',
+      :chrome4      => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/532.2',
+      :iphone3      => 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3_1 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Version/4.0 Mobile/7C144 Safari/528.16',
+      :iphone2      => 'Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A535b Safari/419.3'
     }
   end
 
@@ -210,58 +211,112 @@ describe BrowserDetector::Detector do
     it_should_behave_like "any browser detection"
   end
 
-  context "when given Safari 4.0.3 user agent" do
+  context "when given Safari 4.0.0 user agent" do
     before :each do
       @detector = BrowserDetector::Detector.new( self.user_agents[:safari403] )
       @detector.ua.should_not be_nil
       @browser_name = 'safari'
-      @browser_version = '4.0.3'
+      @browser_version = '4.0.0'
       @browser_version_major = '4'
       @browser_version_minor = '0'
-      @browser_version_build = '3'
+      @browser_version_build = '0'
       @browser_version_revision = '0'
-      @browser_id = 'safari403'
-      @browser_full_name = 'Safari 4.0.3'
+      @browser_id = 'safari400'
+      @browser_full_name = 'Safari 4.0.0'
       @can_use_png = true
     end
 
     it_should_behave_like "any browser detection"
   end
 
-  context "when given a bad Safari 4.0.3 user agent where version cannot be determined" do
+  context "when given Safari 5.0.1 user agent" do
     before :each do
-      @detector = BrowserDetector::Detector.new( 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/999.2' )
+      @detector = BrowserDetector::Detector.new( self.user_agents[:safari501] )
       @detector.ua.should_not be_nil
       @browser_name = 'safari'
-      @browser_version = '4.0.3'
-      @browser_version_major = '4'
+      @browser_version = '5.0.1'
+      @browser_version_major = '5'
       @browser_version_minor = '0'
-      @browser_version_build = '3'
+      @browser_version_build = '1'
       @browser_version_revision = '0'
-      @browser_id = 'safari403'
-      @browser_full_name = 'Safari 4.0.3'
+      @browser_id = 'safari501'
+      @browser_full_name = 'Safari 5.0.1'
       @can_use_png = true
     end
 
-    it "should agree that the browser verison is 0.0.0.0" do
-      @detector.browser_version.should == '0.0.0.0'
+    it_should_behave_like "any browser detection"
+  end
+
+  # context "when given a bad Safari 4.0.3 user agent where version cannot be determined" do
+  #   before :each do
+  #     @detector = BrowserDetector::Detector.new( 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.221.8 Safari/999.2' )
+  #     @detector.ua.should_not be_nil
+  #     @browser_name = 'safari'
+  #     @browser_version = '4.0.3'
+  #     @browser_version_major = '4'
+  #     @browser_version_minor = '0'
+  #     @browser_version_build = '3'
+  #     @browser_version_revision = '0'
+  #     @browser_id = 'safari403'
+  #     @browser_full_name = 'Safari 4.0.3'
+  #     @can_use_png = true
+  #   end
+  #
+  #   it "should agree that the browser verison is 0.0.0.0" do
+  #     @detector.browser_version.should == '0.0.0.0'
+  #   end
+  #
+  #   it "should agree that the browser verison major is 0" do
+  #     @detector.browser_version_major.should == '0'
+  #   end
+  #
+  #   it "should agree that the browser verison minor is 0" do
+  #     @detector.browser_version_minor.should == '0'
+  #   end
+  #
+  #   it "should agree that the browser verison build is 0" do
+  #     @detector.browser_version_build.should == '0'
+  #   end
+  #
+  #   it "should agree that the browser verison revision is 0" do
+  #     @detector.browser_version_revision.should == '0'
+  #   end
+  # end
+
+  context "when given Chrome 3.0.195.27 user agent" do
+    before :each do
+      @detector = BrowserDetector::Detector.new( self.user_agents[:chrome3] )
+      @detector.ua.should_not be_nil
+      @browser_name = 'chrome'
+      @browser_version = '3.0.195.27'
+      @browser_version_major = '3'
+      @browser_version_minor = '0'
+      @browser_version_build = '195'
+      @browser_version_revision = '27'
+      @browser_id = 'chrome3019527'
+      @browser_full_name = 'Chrome 3.0.195.27'
+      @can_use_png = true
     end
 
-    it "should agree that the browser verison major is 0" do
-      @detector.browser_version_major.should == '0'
+    it_should_behave_like "any browser detection"
+  end
+
+  context "when given Chrome 4.0.221.8 user agent" do
+    before :each do
+      @detector = BrowserDetector::Detector.new( self.user_agents[:chrome4] )
+      @detector.ua.should_not be_nil
+      @browser_name = 'chrome'
+      @browser_version = '4.0.221.8'
+      @browser_version_major = '4'
+      @browser_version_minor = '0'
+      @browser_version_build = '221'
+      @browser_version_revision = '8'
+      @browser_id = 'chrome402218'
+      @browser_full_name = 'Chrome 4.0.221.8'
+      @can_use_png = true
     end
 
-    it "should agree that the browser verison minor is 0" do
-      @detector.browser_version_minor.should == '0'
-    end
-
-    it "should agree that the browser verison build is 0" do
-      @detector.browser_version_build.should == '0'
-    end
-
-    it "should agree that the browser verison revision is 0" do
-      @detector.browser_version_revision.should == '0'
-    end
+    it_should_behave_like "any browser detection"
   end
 
   context "having sample user agents" do
